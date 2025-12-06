@@ -37,3 +37,8 @@ ENV/
 .vscode/
 *.swp
 *.swo
+
+# Data files
+data.db
+weather.db
+weather_raw.json
