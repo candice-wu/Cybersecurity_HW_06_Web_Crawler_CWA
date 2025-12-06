@@ -41,8 +41,26 @@ st.markdown("Data Source: CWA Open Data API (F-A0010-001)")
 st.sidebar.header("Settings")
 locations = get_locations()
 
+# Auto-fetch logic for Streamlit Cloud
 if not locations:
-    st.error("No data found in database (data.db). Please run fetch_data.py first.")
+    st.info("Local database not found or empty. Attempting to fetch data from API...")
+    try:
+        import fetch_data
+        import os
+        
+        # Check for API key in Streamlit secrets and inject into env if missing
+        if "CWA_API_KEY" not in os.environ and "CWA_API_KEY" in st.secrets:
+            os.environ["CWA_API_KEY"] = st.secrets["CWA_API_KEY"]
+            
+        fetch_data.main()
+        
+        # Reload locations after fetch
+        locations = get_locations()
+    except Exception as e:
+        st.error(f"Error fetching data: {e}")
+
+if not locations:
+    st.error("No data found in database (data.db). Please ensure CWA_API_KEY is set in Secrets or environment variables.")
 else:
     selected_location = st.sidebar.selectbox("Select Region", locations)
 
