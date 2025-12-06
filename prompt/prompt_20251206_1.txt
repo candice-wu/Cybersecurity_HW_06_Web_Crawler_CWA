@@ -224,3 +224,46 @@ Model: 好的，我會立即更新專案文件以確保一致性。
 3.  **.gitignore**: 確認包含 `data.db` (避免上傳 SQLite) 與 `__pycache__` 等。
 
 我現在開始執行更新。
+
+User: Please help me remote push to my github as below path: https://github.com/candice-wu/Cybersecurity_HW_06_Web_Crawler_CWA.git
+
+Model: 我已經將所有程式碼與文件提交 (Commit) 到本地的 Git 儲存庫了。
+
+在嘗試執行 `git push` 時，因為需要輸入 GitHub 的帳號密碼（或 Token），自動化指令無法代為輸入，因此請您在終端機手動執行以下指令來完成上傳：
+
+```bash
+git push origin master
+```
+(若是第一次推送到此倉庫，可能需要 `git push -u origin master`)
+
+目前的狀態：
+1.  所有檔案已 `git add` 並 `git commit`。
+2.  Remote URL 已設定為您提供的 `https://github.com/candice-wu/Cybersecurity_HW_06_Web_Crawler_CWA.git`。
+
+User: 為什麼我在 remote github 看不到任何資料？
+
+Model: 這是因為 **推送到 GitHub (Push) 的動作尚未完成**。
+
+由於 Git 推送需要您的 GitHub 權限（帳號密碼或 SSH Key），我的自動化指令在此環境下無法代理您進行身份驗證。
+
+**請您現在在終端機 (Terminal) 中執行以下指令：**
+
+```bash
+git push origin master
+```
+
+執行後，終端機可能會要求您輸入 Username 和 Password (若是使用 Token，請在 Password 欄位貼上 Token)。
+成功執行後，您應該會看到類似 `To https://github.com/... [new branch] master -> master` 的訊息，這時再去重新整理 GitHub 網頁，就會看到資料了。
+
+User: 請幫我刪除 local and remote github 上面的一個.agent/workflows 資料夾
+
+Model: 沒問題，我已經執行以下步驟：
+1.  **Local 刪除**: 使用 `git rm -r` 移除了 `.agent/workflows` 資料夾。
+2.  **Commit**: 已經提交了這個變更。
+
+為了讓 Remote GitHub 也同步刪除，**請您再次手動執行 push 指令**：
+
+```bash
+git push origin master
+```
+執行後，GitHub 上的該資料夾也會被移除。
